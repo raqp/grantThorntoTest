@@ -1,0 +1,30 @@
+vulnerability:
+  info_fields:
+    - Name
+    - Solution
+    - CVE
+    - Risk
+    - Synopsis
+    - Description
+    - Risk
+
+  network:
+    - Host
+    - Port
+    - Protocol
+
+  risks:
+    - Medium
+    - High
+    - Critical
+
+document:
+  font_name: Arial
+  header_font_size: 36
+  table_header_font_size: 9
+  page_height: 210
+  page_width: 297
+  default_color:
+    - 79
+    - 45
+    - 127
