@@ -114,8 +114,10 @@ class DocMaker:
         for name in data:
             target_data = data[name]
             risk = target_data['Risk']
-            cve = ', '.join(target_data['CVE'])
-            description = f'{target_data["Synopsis"]}\n({cve})'
+            cve = ', '.join(target_data['CVE']) if target_data['CVE'] else ""
+            description = f'{target_data["Synopsis"]})'
+            if cve:
+                description += f"\n({cve})"
             remediation = target_data['Solution']
             impact = target_data['Description']
             network = ''
