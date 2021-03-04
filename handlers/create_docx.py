@@ -19,12 +19,14 @@ class DocMaker:
         self.table_header_font_size = config['table_header_font_size']
         self.table_headers = ['Affected Hosts / Rating', 'Description', 'Impact', 'Remediation']
         self.default_color = config['default_color']
+        self.table_header_color = config['table_header_color']
         self.page_height = config['page_height']
         self.page_width = config['page_width']
         self.risk_colors = {
             'Critical': (233, 40, 65),
             'High': (255, 125, 30),
-            'Medium': (255, 192, 0)
+            'Medium': (255, 192, 0),
+            'Low': (0, 176, 80)
         }
 
     def process(self, data):
@@ -56,7 +58,7 @@ class DocMaker:
             run.bold = True
             run.font.name = self.font_name
             run.font.size = Pt(self.table_header_font_size)
-        run_1.font.color.rgb = RGBColor(*self.default_color)
+        run_1.font.color.rgb = RGBColor(*self.table_header_color)
         run_2.font.color.rgb = RGBColor(*self.risk_colors.get(risk))
 
     def create_new_table(self, row=1, columns=4):
@@ -119,8 +121,8 @@ class DocMaker:
             network = ''
             self.create_table_headers(name, risk)
             table = self.create_new_table()
-            for ip, port, protocol in target_data['Network']:
-                network += f'{ip} ({protocol.upper()}/{port})\n'
+            for n in target_data['Network']:
+                network += f'{n}\n'
             self.fill_in_the_table(table, network, description, impact, remediation)
             self.document.add_paragraph()
             self.set_table_styling(table, 'left', 'right')
