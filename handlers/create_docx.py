@@ -13,7 +13,7 @@ class DocMaker:
         self.document = Document()
         self.doc_type = doc_type
         self.destination = destination
-        self.file_name = f'report_{datetime.now().strftime("%d-%b-%Y-%H-%M")}.docx'
+        self.file_name = f'report_{datetime.now().strftime("%d-%b-%Y-%H-%M-%S")}.docx'
         self.font_name = config['font_name']
         self.header_font_size = config['header_font_size']
         self.table_header_font_size = config['table_header_font_size']
