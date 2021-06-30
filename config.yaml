@@ -14,9 +14,9 @@ vulnerability:
     - Protocol
 
   risks:
-    - Medium
-    - High
     - Critical
+    - High
+    - Medium
     - Low
 
 document:

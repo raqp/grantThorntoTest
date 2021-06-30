@@ -95,7 +95,7 @@ class DocMaker:
         for index, cell in enumerate(cells):
             for paragraph in cell.paragraphs:
                 run = paragraph.add_run(args[index])
-                paragraph.paragraph_format.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
+                paragraph.paragraph_format.line_spacing_rule = WD_LINE_SPACING.AT_LEAST
                 if color:
                     run.font.color.rgb = RGBColor(*color)
                 if bold:
@@ -115,7 +115,7 @@ class DocMaker:
             target_data = data[name]
             risk = target_data['Risk']
             cve = ', '.join(target_data['CVE']) if target_data['CVE'] else ""
-            description = f'{target_data["Synopsis"]})'
+            description = f'{target_data["Synopsis"]}'
             if cve:
                 description += f"\n({cve})"
             remediation = target_data['Solution']
