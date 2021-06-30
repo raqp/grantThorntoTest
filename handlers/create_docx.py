@@ -119,7 +119,7 @@ class DocMaker:
             if cve:
                 description += f"\n({cve})"
             remediation = target_data['Solution']
-            impact = target_data['Description']
+            impact = target_data['Description'].replace('\n', '')
             network = ''
             self.create_table_headers(name, risk)
             table = self.create_new_table()
