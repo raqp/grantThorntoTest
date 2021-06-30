@@ -22,6 +22,7 @@ class DocMaker:
         self.table_header_color = config['table_header_color']
         self.page_height = config['page_height']
         self.page_width = config['page_width']
+        self.replace = config['replace']
         self.risk_colors = {
             'Critical': (233, 40, 65),
             'High': (255, 125, 30),
@@ -119,7 +120,7 @@ class DocMaker:
             if cve:
                 description += f"\n({cve})"
             remediation = target_data['Solution']
-            impact = target_data['Description'].replace('\n', '')
+            impact = target_data['Description'].replace('\n', '') if self.replace else target_data['Description']
             network = ''
             self.create_table_headers(name, risk)
             table = self.create_new_table()

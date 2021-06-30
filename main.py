@@ -20,15 +20,19 @@ def get_source_and_destination():
     try:
         source = argv[1]
         destination = argv[2]
-        return source, destination
+        replace = False
+        if "-n" in argv:
+            replace = True
+        return source, destination, replace
     except IndexError:
         print("Incorrect source or destination path.")
         exit(127)
 
 
 def start():
-    source, destination = get_source_and_destination()
+    source, destination, replace = get_source_and_destination()
     config = config_loader()
+    config['document']['replace'] = replace
     system_platform = get_platform()
     vulnerability = Vulnerability(config, source, destination, system_platform)
     vulnerability.process()
